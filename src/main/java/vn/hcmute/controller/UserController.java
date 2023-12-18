@@ -115,15 +115,15 @@ public class UserController {
 			return "redirect:/listpost";
 		} else if (user_service.checkLogin(Email, pass) && status.get().getStatus() == false) {
 			session.setAttribute("email", Email);
-			return "redirect:login?false";
+			return "redirect:/?false";
 		}
-		return "redirect:login?wrong";
+		return "redirect:/?wrong";
 	}
 
 	@GetMapping("/logout")
 	public ModelAndView Logout(HttpSession session, ModelMap model) {
 		session.removeAttribute("username");
-		return new ModelAndView("redirect:/login", model);
+		return new ModelAndView("redirect:/", model);
 	}
 
 	@GetMapping("/registerOrFail")
@@ -165,7 +165,7 @@ public class UserController {
 	public String show(HttpSession session) // nhận emal và gửi code
 	{
 		String email = (String) session.getAttribute("email");
-		System.out.println(
+		//System.out.println(
 				"Email: -----------------------------------------------------------------------------" + email);
 		Optional<UserEntity> user = user_service.findByemailContaining(email);
 		System.out.print(user.get().getEmail());
