@@ -529,7 +529,9 @@
 						window.location.replace("/listpost");
 					},
 					error: function () {
-						alert('Error save image');
+						//alert('Error save image');
+						modal.classList.remove("open");
+						window.location.replace("/listpost");
 					}
 				});
 
@@ -564,7 +566,8 @@
 						window.location.replace("/listpost");
 					},
 					error: function () {
-						alert('Error update image');
+						//alert('Error update image');
+						window.location.replace("/listpost");
 					}
 				});
 

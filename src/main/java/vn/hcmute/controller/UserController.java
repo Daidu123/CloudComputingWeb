@@ -115,9 +115,9 @@ public class UserController {
 			return "redirect:/listpost";
 		} else if (user_service.checkLogin(Email, pass) && status.get().getStatus() == false) {
 			session.setAttribute("email", Email);
-			return "redirect:login?false";
+			return "redirect:/?false";
 		}
-		return "redirect:login?wrong";
+		return "redirect:/?wrong";
 	}
 
 	@GetMapping("/logout")

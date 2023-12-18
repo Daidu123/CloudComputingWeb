@@ -36,7 +36,7 @@ public class UserInfoController {
 
 		if (userID == 0) {
 			// Xử lý trường hợp userID là null
-			return "redirect:/login"; // hoặc chuyển hướng đến trang đăng nhập khác
+			return "redirect:/"; // hoặc chuyển hướng đến trang đăng nhập khác
 		}
 		List<PostModel> posts = postService.findByUserUserID(userID);
 		Optional<UserInfoEntity> userOptional = userInfoService.findById(userID);
