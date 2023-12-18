@@ -1,6 +1,8 @@
 runtime: java17
-instance_class: F1
+instance_class: F4_1G
 
-# env_variables:
-#   FIREBASE_CONFIG: 'static/chatrealtime-7e7e8-firebase-adminsdk-512k7-6a7ab2885d.json'
+automatic_scaling:
+  min_instances: 1
+  max_instances: 10
+
 
