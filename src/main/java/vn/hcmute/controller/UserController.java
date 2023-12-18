@@ -165,7 +165,7 @@ public class UserController {
 	public String show(HttpSession session) // nhận emal và gửi code
 	{
 		String email = (String) session.getAttribute("email");
-		System.out.println(
+		//System.out.println(
 				"Email: -----------------------------------------------------------------------------" + email);
 		Optional<UserEntity> user = user_service.findByemailContaining(email);
 		System.out.print(user.get().getEmail());
