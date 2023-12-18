@@ -123,7 +123,7 @@ public class UserController {
 	@GetMapping("/logout")
 	public ModelAndView Logout(HttpSession session, ModelMap model) {
 		session.removeAttribute("username");
-		return new ModelAndView("redirect:/login", model);
+		return new ModelAndView("redirect:/", model);
 	}
 
 	@GetMapping("/registerOrFail")
