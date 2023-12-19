@@ -20,7 +20,6 @@
 	<artifactId>DemoSpring</artifactId>
 
 	<version>1.0</version>
-
 	 <properties>
         <app.version>1</app.version>
         <!-- Các thuộc tính khác -->
@@ -236,6 +235,22 @@
 			</plugin>
 
 			<plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>properties-maven-plugin</artifactId>
+            <version>1.0.0</version>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>read-project-properties</goal>
+                    </goals>
+                    <phase>initialize</phase>
+                </execution>
+            </executions>
+        </plugin>
+
+
+
+	<plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>properties-maven-plugin</artifactId>
             <version>1.0.0</version>
