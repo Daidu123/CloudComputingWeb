@@ -36,13 +36,13 @@ public class LikeController {
 
 	@PostMapping("/like/{postId}")
 	public ResponseEntity<Long> likePost(@PathVariable long postId, HttpSession session) {
-		System.out.print("Post id nha: " + postId);
+		//System.out.print("Post id nha: " + postId);
 		Long userid = (long) session.getAttribute("userInfoID");
 		PostEntity post = postservice.findById(postId).get();
 		UserInfoEntity user = userInfoService.findById(userid).get();
 		LikeEntity LikeEntity = likeService.findLikeByPostAndUser(post, userid);
 		if (LikeEntity != null) {
-			System.out.println("Toi Day roi!!!!");
+			//System.out.println("Toi Day roi!!!!");
 			if (LikeEntity.isStatus())
 				LikeEntity.setStatus(false);
 
@@ -51,7 +51,7 @@ public class LikeController {
 
 			likeService.save(LikeEntity);
 		} else {
-			System.out.println("Loi nayy!!");
+			//System.out.println("Loi nayy!!");
 			LikeEntity like = new LikeEntity();
 			like.setLikeDate(new Date(System.currentTimeMillis()));
 			like.setStatus(true);
@@ -82,11 +82,11 @@ public class LikeController {
 		List<LikeEntity> listLike = postservice.findById(postId).get().getListLikes();
 		Long likeCount = (long) 0;
 		for (LikeEntity like : listLike) {
-			System.out.println(like.isStatus());
+			//System.out.println(like.isStatus());
 			if (like.isStatus() == true)
 				likeCount++;
 		}
-		System.out.println(likeCount);
+		//System.out.println(likeCount);
 		return ResponseEntity.ok(likeCount);
 	}
 

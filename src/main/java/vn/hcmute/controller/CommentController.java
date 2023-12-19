@@ -48,7 +48,7 @@ public class CommentController {
 
 	@GetMapping("/comment/{postId}")
 	public ResponseEntity<List<CommentModel>> getComments(@PathVariable long postId) {
-		System.out.print("Post id nha: " + postId);
+		//System.out.print("Post id nha: " + postId);
 
 		// Lấy danh sách bình luận
 		List<CommentEntity> listComment = commentService.findCommentByPost(postId);
@@ -56,7 +56,7 @@ public class CommentController {
 		for (CommentEntity comment:listComment) {
 			listCommentModel.add(commentService.convertEntityToModel(comment));
 		}
-		System.out.print(listComment);
+		//System.out.print(listComment);
 
 		// Đếm số lượng bình luận
 		Long commentCount = commentService.countCommentsByPostId(postId);
@@ -65,7 +65,7 @@ public class CommentController {
 		for (CommentEntity comment : listComment) {
 			comment.setCommentCount(commentCount);
 		}
-		System.out.println("cmt =" + commentCount);
+		//System.out.println("cmt =" + commentCount);
 		return new ResponseEntity<>(listCommentModel, HttpStatus.OK);
 	}
 

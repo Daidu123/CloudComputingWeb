@@ -54,6 +54,7 @@ public class PostService implements IPostService {
 
 		postModel.setAvata(userInfo.getAvata());
 		postModel.setUserAccountName(userAcc.getUserName());
+		//
 		System.out.println("USER NAME: ------------------" + userAcc.getUserName());
 		int likeCount = 0;
 		List<LikeEntity> listLike = post.getListLikes();

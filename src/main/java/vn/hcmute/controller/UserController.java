@@ -92,7 +92,7 @@ public class UserController {
 		Optional<UserEntity> user = user_service.findByemailContaining(Email);
 		Optional<StatusAccountEntity> status = user_service.findByuserCode(user.get());
 		if (user_service.checkLogin(Email, pass) && status.get().getStatus() == true) {
-			System.out.println(user_account.getEmail());
+			//System.out.println(user_account.getEmail());
 			Cookie name = new Cookie("email", Email);
 			Cookie password = new Cookie("pass", pass);
 			name.setMaxAge(60);
@@ -168,17 +168,14 @@ public class UserController {
 		//System.out.println(
 		//		"Email: -----------------------------------------------------------------------------" + email);
 		Optional<UserEntity> user = user_service.findByemailContaining(email);
-		System.out.print(user.get().getEmail());
+		//System.out.print(user.get().getEmail());
 		Optional<StatusAccountEntity> account_status = user_service.findByuserCode(user.get());
 		if (user.isPresent()) { // && account_status.get().getStatus() == false) {
-			System.out.print(user.get().getIdAccount());
-			System.out.print(account_status.get().getId());
-			System.out.print(user.get().getEmail());
 			int code = Integer.parseInt(RandomStringUtils.randomNumeric(6));
 			user_service.createCode(account_status.get(), code);// tạo code cập nhật code cũ
 			try {
 				imail.constructCreateCode(code, user.get());
-				System.out.print("da in");
+				//System.out.print("da in");
 
 			} catch (Exception e) {
 				return "redirect:forgot?no";
@@ -208,14 +205,11 @@ public class UserController {
 			Optional<ResetPasswordEntity> resetPass = user_service.findByUserResetPass(user.get());
 			if (!resetPass.isEmpty()) {
 				user_service.deleteById(resetPass.get().getId());
-				System.out.print("da xoa");
+				//System.out.print("da xoa");
 			}
 			user_service.createToken(user.get(), token);
 			try {
 				imail.constructResetTokenEmail(getAppUrl(request), token, user.get());
-				System.out.print(user.get().getEmail());
-				System.out.print(token);
-				System.out.print(getAppUrl(request));
 
 			} catch (Exception e) {
 				return "redirect:forgot?no";
@@ -233,7 +227,7 @@ public class UserController {
 	@GetMapping("/user/changePassword")
 	public String showChangePasswordPage(ModelMap model, @RequestParam(name = "token") String token1) {
 		String result = user_service.validToken(token1);
-		System.out.print(token1);
+		
 		if (result != null)
 			return "login";
 		else {
@@ -274,7 +268,7 @@ public class UserController {
 			session.setAttribute("userFullName",
 					user_service.findByemailContaining(user.getEmail()).get().getUserInfo().getFullName());
 			
-			System.out.println("Emai-----------"+user.getEmail());
+			
 			return "home";
 	}
 
@@ -298,7 +292,7 @@ public class UserController {
 		} catch (Exception e) {
 			// Xử lý lỗi, ví dụ:
 			e.printStackTrace();
-			System.out.println("Loi---------------------------------------------" + e.getMessage());
+			
 			System.out.println("Request body: " + Form.form()
 			.add("link token", InfoGoogleModel.GOOGLE_LINK_GET_TOKEN)
 	        .add("client_id", InfoGoogleModel.GOOGLE_CLIENT_ID)
@@ -311,12 +305,13 @@ public class UserController {
 		}
 		
 		return "home";
+
 	}
 
 	public static UserGoogle getUserInfo(final String accessToken) throws ClientProtocolException, IOException {
 		String link = InfoGoogleModel.GOOGLE_LINK_GET_USER_INFO + accessToken;
 		String response = Request.Get(link).execute().returnContent().asString();
-		System.out.print(response);
+		//System.out.print(response);
 		UserGoogle googlePojo = new Gson().fromJson(response, UserGoogle.class);
 
 		return googlePojo;
@@ -332,7 +327,7 @@ public class UserController {
 		response.addCookie(name);
 		UserEntity user = user_service.findByToken(pass.getToken()).getUserResetPass();
 		if (user != null) {
-			System.out.print(user);
+			//System.out.print(user);
 			if (pass.getNewPass().equals(pass.getConfirmPass())) {
 				user_service.changePass(user, pass.getConfirmPass());
 				return "redirect:updatePassword?success";
@@ -368,7 +363,7 @@ public class UserController {
 		if (status_check.isPresent()) {
 			status_check.get().setStatus(true);
 			user_service.save(status_check.get());
-			System.out.print(status_check.get().getStatus());
+			//System.out.print(status_check.get().getStatus());
 			return "redirect:/verifyCode?success";
 		} else
 			return "redirect:/verifyCode?fail";

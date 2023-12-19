@@ -114,7 +114,7 @@ public class PostController {
 		if (userOptional.isPresent()) {
 			user = userOptional.get();
 		} else {
-			System.out.println("Loi roi");
+			//System.out.println("Loi roi");
 		}
 		PostEntity post = new PostEntity();
 		post.setUser(user);
@@ -141,7 +141,7 @@ public class PostController {
             HttpSession session) {
 		Long userid = (long) session.getAttribute("userInfoID");
 		List<PostModel> posts = postService.getPostsByGroupId(1, page, size, userid);
-		System.out.println(page);
+		//System.out.println(page);
 		model.addAttribute("list", posts);
 		//model.addAttribute("fragment", "post");  // Sửa dòng này để truyền danh sách bài viết vào fragment
 	    return "listpost :: #listpost";
@@ -176,7 +176,7 @@ public class PostController {
 	
 	@PostMapping("/post/update/{postId}")
 	public String updatePost(@PathVariable Long postId, @RequestBody PostModel request) {
-		System.out.println("----------------------------------------------" +request.getContent());
+		//System.out.println("----------------------------------------------" +request.getContent());
 		PostEntity post = postService.findById(postId).get();
 		post.setImage(request.getImageURL());
 		post.setContent(request.getContent());
@@ -193,7 +193,7 @@ public class PostController {
 	@GetMapping("/deletepost/{postId}")
 	@Transactional
 	public String deletePost(@PathVariable long postId) {
-		System.out.println(postId);
+		//System.out.println(postId);
 		if (postService.existsById(postId)) {
 			commentService.deleteAllByPostId(postId);
 			likeService.deleteAllByPostPostId(postId);

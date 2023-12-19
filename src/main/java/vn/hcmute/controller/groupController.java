@@ -165,7 +165,7 @@ public class groupController {
 			Model model) {
 		Long current_userid = (long) session.getAttribute("userInfoID");
 		int isAdmin = checkIsAdminGroup(groupID, current_userid);
-		System.out.println(isAdmin);
+		//System.out.println(isAdmin);
 		if (userID == current_userid) {
 			if (isAdmin == 1) {
 				return "redirect:/group/list_member/" + groupID;
@@ -182,7 +182,7 @@ public class groupController {
 				groupMemberService.delete(groupMember);
 				String message = "Đã xóa khỏi nhóm!";
 				model.addAttribute("message", message);
-				System.out.println("Xoa roi ma");
+				//System.out.println("Xoa roi ma");
 				return "redirect:/group/list_member/" + groupID;
 			} else {
 				return "redirect:/group/list_member/" + groupID;
@@ -234,7 +234,7 @@ public class groupController {
 			HttpSession session) {
 		Long userid = (long) session.getAttribute("userInfoID");
 		List<PostModel> posts = postService.getPostsByGroupId(groupID, page, 2, userid);
-		System.out.println(page);
+		//System.out.println(page);
 		model.addAttribute("list", posts);
 		model.addAttribute("fragment", "post_template");
 		return "Group :: #listpost";
