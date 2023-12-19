@@ -483,7 +483,9 @@
 						window.location.replace("/listpost");
 					},
 					error: function () {
-						alert('Error save image');
+						//alert('Error save image');
+						modal.classList.remove("open");
+						window.location.replace("/listpost");
 					}
 				});
 
