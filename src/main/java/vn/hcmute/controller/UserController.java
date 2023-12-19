@@ -166,7 +166,7 @@ public class UserController {
 	{
 		String email = (String) session.getAttribute("email");
 		//System.out.println(
-				"Email: -----------------------------------------------------------------------------" + email);
+		//		"Email: -----------------------------------------------------------------------------" + email);
 		Optional<UserEntity> user = user_service.findByemailContaining(email);
 		System.out.print(user.get().getEmail());
 		Optional<StatusAccountEntity> account_status = user_service.findByuserCode(user.get());
